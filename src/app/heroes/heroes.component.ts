@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Hero } from '../interfaces/hero';
 import { HeroService } from '../services/hero.service';
 import { MessageService } from '../services/message.service';
@@ -7,7 +7,7 @@ import { MessageService } from '../services/message.service';
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.scss'],
 })
-export class HeroesComponent {
+export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
   selectedHero?: Hero;
 
@@ -25,10 +25,5 @@ export class HeroesComponent {
       next: (data) => (this.heroes = data),
       error: (error) => console.log(error),
     });
-  }
-
-  onSelect(hero: Hero) {
-    this.selectedHero = hero;
-    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
   }
 }
